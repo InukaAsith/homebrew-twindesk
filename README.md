@@ -12,7 +12,8 @@ opened again afterwards, so a Mac you drive only through TwinDesk gets its mouse
 `brew uninstall --cask twindesk` removes the app; add `--zap` to remove its settings too.
 
 The app isn't notarized by Apple: the cask removes the download's quarantine flag, so macOS opens it
-instead of calling it damaged. macOS 13 Ventura or later, Apple Silicon or Intel.
+instead of calling it damaged, without a trip to System Settings. If the app's signature doesn't check
+out on the Mac, the cask signs it there. macOS 13 Ventura or later, Apple Silicon or Intel.
 
 The cask follows TwinDesk's releases on its own ([update.yml](.github/workflows/update.yml)).
 Problems with the app go to [TwinDesk's issues](https://github.com/InukaAsith/TwinDesk/issues).

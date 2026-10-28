@@ -22,8 +22,14 @@ cask "twindesk" do
   # The app isn't notarized: without the quarantine flag macOS opens it instead of calling it damaged.
   # A Mac driven only through TwinDesk loses its mouse and keyboard while the app is quit for an
   # upgrade: the installed version notes that it was running, and the new one is opened once in place.
+  # The release is signed with TwinDesk's own certificate (permissions carry across updates); if that
+  # signature doesn't hold on this Mac, it's signed here (ad-hoc), as Apple Silicon runs only signed code.
   postflight_steps do
     run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/TwinDesk.app"], must_succeed: false
+    run "/bin/sh",
+        args:         ["-c", "/usr/bin/codesign --verify --deep --strict \"$0\" 2>/dev/null || " \
+                             "/usr/bin/codesign --force --deep --sign - \"$0\"", "{{appdir}}/TwinDesk.app"],
+        must_succeed: false
     if_path_exists "twindesk-relaunch", base: :temp do
       run "/usr/bin/open", args: ["{{appdir}}/TwinDesk.app"], must_succeed: false
       remove "twindesk-relaunch", base: :temp
