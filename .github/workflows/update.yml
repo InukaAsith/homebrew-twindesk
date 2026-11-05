@@ -41,6 +41,7 @@ jobs:
         if: steps.bump.outputs.version
         run: |
           brew tap-new --no-git local/check
+          brew trust local/check # Homebrew 7 loads casks only from trusted taps
           mkdir -p "$(brew --repository local/check)/Casks"
           cp Casks/twindesk.rb "$(brew --repository local/check)/Casks/"
           brew style local/check/twindesk
