@@ -1,9 +1,9 @@
 cask "twindesk" do
   arch arm: "arm64", intel: "x64_Intel"
 
-  version "2.4.0"
-  sha256 arm:   "093376687935351306df27de10e77c7ec7a517c2a3394e23178e90cf5c12a9ed",
-         intel: "2c0f8719bc2b1ee7c2a27578f67c5cd7a151437352f908223113fffe96f1e783"
+  version "2.5.1"
+  sha256 arm:   "6966c2fb9e933de4527eefc814a05e420eaa23b346aea6a83d9c5fd6ae268e67",
+         intel: "5d30a03c4f96cef6d27a11893fb109f9ed157777554bfbfe3036302fd750b25b"
 
   url "https://github.com/InukaAsith/TwinDesk/releases/download/v#{version}/TwinDesk-#{version}-#{arch}.dmg"
   name "TwinDesk"
